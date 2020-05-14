@@ -11,7 +11,8 @@ namespace Zero.Data.Migrations
                 name: "Location",
                 columns: table => new
                 {
-                    LocationId = table.Column<int>(nullable: false),
+                    LocationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Lat = table.Column<float>(nullable: false),
                     Long = table.Column<float>(nullable: false)
@@ -25,7 +26,8 @@ namespace Zero.Data.Migrations
                 name: "MaskLogs",
                 columns: table => new
                 {
-                    MaskLogId = table.Column<int>(nullable: false),
+                    MaskLogId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SectorId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
@@ -40,7 +42,8 @@ namespace Zero.Data.Migrations
                 name: "Sector",
                 columns: table => new
                 {
-                    SectorId = table.Column<int>(nullable: false),
+                    SectorId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     LocationId = table.Column<int>(nullable: false)
                 },

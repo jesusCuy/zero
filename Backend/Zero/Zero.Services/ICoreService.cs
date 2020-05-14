@@ -8,7 +8,7 @@ namespace Zero.Services
 {
     public interface ICoreService
     {
-        Task<bool> SaveMaskLog(MaskLogRequest request);
+        Task<MaskLogResponse> SaveMaskLog(MaskLogRequest request);
 
         Task<List<MaskLogResponse>> GetMaskLogs();
     }

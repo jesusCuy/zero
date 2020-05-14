@@ -10,7 +10,7 @@ using Zero.Data;
 namespace Zero.Data.Migrations
 {
     [DbContext(typeof(ZeroContext))]
-    [Migration("20200514001443_initial")]
+    [Migration("20200514013408_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,9 @@ namespace Zero.Data.Migrations
             modelBuilder.Entity("Zero.Data.Model.Location", b =>
                 {
                     b.Property<int>("LocationId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<float>("Lat")
                         .HasColumnType("real");
@@ -43,7 +45,9 @@ namespace Zero.Data.Migrations
             modelBuilder.Entity("Zero.Data.Model.MaskLog", b =>
                 {
                     b.Property<int>("MaskLogId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -65,7 +69,9 @@ namespace Zero.Data.Migrations
             modelBuilder.Entity("Zero.Data.Model.Sector", b =>
                 {
                     b.Property<int>("SectorId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");

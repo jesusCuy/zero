@@ -9,7 +9,7 @@ namespace Zero.Services.DTO
     {
         public string Sector { get; set; }
         public string Location { get; set; }
-        public float Lat { get; set; }
-        public float Long { get; set; }
+        public float? Lat { get; set; }
+        public float? Long { get; set; }
     }
 }

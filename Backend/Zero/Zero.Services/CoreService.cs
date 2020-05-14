@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Zero.Data;
 using Zero.Data.Model;
 using Zero.Services.DTO;
+using Zero.Services.Utils;
 
 namespace Zero.Services
 {
@@ -15,7 +16,7 @@ namespace Zero.Services
         {
             _context = context;
         }
-        public async Task<bool> SaveMaskLog(MaskLogRequest request)
+        public async Task<MaskLogResponse> SaveMaskLog(MaskLogRequest request)
         {
             MaskLog newMaskLog = new MaskLog
             {
@@ -25,8 +26,8 @@ namespace Zero.Services
                 SectorId = request.SectorId
             };
             _context.MaskLogs.Add(newMaskLog);
-            var result = await _context.SaveChangesAsync().ConfigureAwait(false);
-            return result > 0;
+            await _context.SaveChangesAsync().ConfigureAwait(false);
+            return newMaskLog.ToMaskLogResponse();
         }
 
         public async Task<List<MaskLogResponse>> GetMaskLogs()
