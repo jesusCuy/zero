@@ -1,22 +1,27 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Data.SqlClient;
-using Willezone.Azure.WebJobs.Extensions.DependencyInjection;
+using System.IO;
+using System.Threading.Tasks;
 using Zero.Services;
+using Zero.Services.DTO;
 
 namespace Zero.Functions
 {
-    public static class Functions
+    public class MaskLogFunction
     {
-        [FunctionName("Function1")]
-        public static async Task<IActionResult> Run(
+        private ICoreService coreService;
+
+        public MaskLogFunction(ICoreService _coreService)
+        {
+            coreService = _coreService;
+        }
+
+        [FunctionName("MaskLogFunction")]
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -27,6 +32,14 @@ namespace Zero.Functions
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
+
+            MaskLogRequest request = new MaskLogRequest()
+            {
+                Description = "Test",
+                SectorId = 1,
+                Incident = false
+            };
+            await coreService.SaveMaskLog(request).ConfigureAwait(false);
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
