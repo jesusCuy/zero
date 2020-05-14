@@ -7,10 +7,13 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
+using Willezone.Azure.WebJobs.Extensions.DependencyInjection;
+using Zero.Services;
 
-namespace ZeroFunctions
+namespace Zero.Functions
 {
-    public static class Function1
+    public static class Functions
     {
         [FunctionName("Function1")]
         public static async Task<IActionResult> Run(
