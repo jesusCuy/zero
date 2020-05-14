@@ -39,8 +39,10 @@ static char pass[] = IOT_CONFIG_WIFI_PASSWORD;
 /* Define several constants/global variables */
 static const char* connectionString = DEVICE_CONNECTION_STRING;
 #define MESSAGE_COUNT 5 // determines the number of times the device tries to send a message to the IoT Hub in the cloud.
+#define D4 2
 static bool g_continueRunning = true; // defines whether or not the device maintains its IoT Hub connection after sending (think receiving messages from the cloud)
 static size_t g_message_count_send_confirmations = 0;
+
 
 IOTHUB_MESSAGE_HANDLE message_handle;
 size_t messages_sent = 0;
@@ -86,6 +88,9 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receive_message_callback(IOTHUB_MESSAGE_
     else
     {
         LogInfo("Received Message [%d]\r\n Message ID: %s\r\n Data: <<<%.*s>>> & Size=%d\r\n", *counter, messageId, (int)size, buffer, (int)size);
+        digitalWrite(D4, HIGH);
+        delay(1500);
+        digitalWrite(D4, LOW);
         // If we receive the work 'quit' then we stop running
         if (size == (strlen("quit") * sizeof(char)) && memcmp(buffer, "quit", size) == 0)
         {
@@ -100,7 +105,6 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receive_message_callback(IOTHUB_MESSAGE_
     (*counter)++;
     return IOTHUBMESSAGE_ACCEPTED;
 }
-
 
 /* -- send_confirm_callback --
  * Callback method which executes upon confirmation that a message originating from this device has been received by the IoT Hub in the cloud.
@@ -134,6 +138,7 @@ static void connection_status_callback(IOTHUB_CLIENT_CONNECTION_STATUS result, I
 
 void setup() {
     int result = 0;
+    pinMode(D4, OUTPUT);
 
     sample_init(ssid, pass);
 

@@ -7,8 +7,8 @@
 /**
  * WiFi setup
  */
-#define IOT_CONFIG_WIFI_SSID            "IZZI-D95A"
-#define IOT_CONFIG_WIFI_PASSWORD        "F82DC00FD95A"
+#define IOT_CONFIG_WIFI_SSID            "Red de CR 2.4GA"
+#define IOT_CONFIG_WIFI_PASSWORD        "Cr91939800"
 
 /**
  * IoT Hub Device Connection String setup
