@@ -16,17 +16,19 @@ export default function FaceDetectionInfo (){
     const user = useContext(Context);
     const hasAccess = () => {
         const prediction = user.prediction
-        let result = {isValid: false, text: "Acceso denegado"};
+        let result = {isValid: false};
         if(prediction.value === 0 ||
             prediction.value < threshold ||
             (prediction.value > threshold && prediction.type === typeTags.NoMask )){
-            // no changes to result
+            return {
+                isValid: false,
+                text: "Cubrebocas incorrecto o nulo"
+            };
         }
-
         if(prediction.value > 30 && prediction.type === typeTags.Mask){
             result = {
                 isValid:true,
-                text:"Acceso autorizado"
+                text:"Cubrebocas correcto"
             }
         };
         return result;
@@ -60,7 +62,7 @@ export default function FaceDetectionInfo (){
                         </div>
 
                         <div  className={styles["infoGroup"]}>
-                            <label>Acceso</label>
+                            <label>Detección</label>
                             <div className={styles[hasAccess().isValid ? "accessApprove": "accessReject"]}>
                                 <p>{hasAccess().text}</p>
                                 <p>{getPrediction()}</p>
