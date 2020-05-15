@@ -11,8 +11,10 @@ import WebCam from "../WebCam/WebCam.component";
 import styles from "./FaceDetection.module.css";
 import { analyzeImage } from "./resource";
 import api from '../../api';
+import { useHistory } from 'react-router-dom';
 
-export default function FaceDetection (){
+export default function FaceDetection () {
+  const history = useHistory();
   const user = useContext(Context);
   const webcamRef = React.useRef(null);
   const capture = React.useCallback(() => {
@@ -35,6 +37,10 @@ export default function FaceDetection (){
             });
           });
     },[webcamRef]);
+
+    const goFeedback = () => {
+      history.push('/dashboard');
+    }
   
     return (
       <div className={styles["wrapper"]}>
@@ -49,6 +55,14 @@ export default function FaceDetection (){
                   onClick={capture}
                   >
                   Empezar detección
+              </Button>
+              <Button 
+                  variant="contained" 
+                  size="large" 
+                  color="primary"
+                  className={styles["dashboardButton"]}
+                  onClick={goFeedback}>
+                  Ver historial
               </Button>
               <div className={styles["webContainer"]}>
                 <WebCam childRef={webcamRef}/>
