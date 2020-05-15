@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
 import * as cvstfjs from '@microsoft/customvision-tfjs';
+
+import { Context } from "../../context/index";
 
 // components
 import WebCam from "../WebCam/WebCam.component";
@@ -9,15 +11,16 @@ import WebCam from "../WebCam/WebCam.component";
 import styles from "./FaceDetection.module.css";
 
 export default function FaceDetection (){
+  const user = useContext(Context);
   const webcamRef = React.useRef(null);
   const capture = React.useCallback(
     async () => {
-        debugger;
-        const imageSrc = webcamRef.current.getScreenshot();
+        user.setLoading();
         let model = new cvstfjs.ObjectDetectionModel();
-        await model.loadModelAsync('model.json');
+        await model.loadModelAsync('tensorFlowJs/model.json');
         const image = document.getElementById('webCam');
         const result = await model.executeAsync(image);
+        user.setLoading();
         console.log(result);
     },
     [webcamRef]
