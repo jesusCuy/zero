@@ -29,7 +29,6 @@ export const buildAPICall = call => {
         } = options || {};
         
 		const headers = fetchOptions.headers;
-
 		return axios({
 			method: fetchOptions.method,
 			url: endpoint,

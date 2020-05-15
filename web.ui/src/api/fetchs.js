@@ -20,7 +20,10 @@ const fetchs = [
 		name: "getDashboardDetails",
 		build: () => ({
 			options: {
-				method: "GET"
+				method: "GET",
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			},
 			endpoint: `${root}/MaskLogFunction?sector=1`
 		})

@@ -38,7 +38,7 @@ namespace Zero.Functions
                 {
                     Description = "Test " + Guid.NewGuid().ToString(),
                     SectorId = 1,
-                    Incident = DateTime.Now.Millisecond < 999
+                    Incident = DateTime.Now.Millisecond < 200
                 };
                 var postResult = await coreService.SaveMaskLog(request).ConfigureAwait(false);
 
