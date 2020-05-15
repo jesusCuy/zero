@@ -36,7 +36,7 @@ export const parseAnalyzeResult = (result) => {
     const value = bestPrediction.probability * 100;
     const propability = { 
         value: Math.round(value * 100) / 100, 
-        type: bestPrediction.tagName 
+        type: bestPrediction.tagName
       };
     return propability;
 };

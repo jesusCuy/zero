@@ -32,48 +32,52 @@ namespace Zero.Functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            if (req.Method == "POST")
+            try
             {
-                MaskLogRequest request = new MaskLogRequest()
+                if (req.Method == "POST")
                 {
-                    Description = "Test " + Guid.NewGuid().ToString(),
-                    SectorId = 1,
-                    Incident = DateTime.Now.Millisecond < 200
-                };
-                var postResult = await coreService.SaveMaskLog(request).ConfigureAwait(false);
 
-                if(postResult.Incident)
-                {
-                    // Call HUB if mask has incident
-                    serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
-                    InvokeMethod().GetAwaiter();
+                    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                    MaskLogRequest model = JsonConvert.DeserializeObject<MaskLogRequest>(requestBody);
+
+                    var postResult = await coreService.SaveMaskLog(model).ConfigureAwait(false);
+
+                    if (postResult.Incident)
+                    {
+                        // Call HUB if mask has incident
+                        serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
+                        InvokeMethod().GetAwaiter();
+                    }
+
+                    return new OkObjectResult(postResult);
+
+
                 }
+                else if (req.Method == "GET")
+                {
+                    string sector = req.Query["sector"];
+                    string location = req.Query["location"];
+                    int sectorId = 0;
+                    if (int.TryParse(sector, out sectorId))
+                    {
 
-                return new OkObjectResult(postResult);
+                        var getResult = coreService.GetMaskLogs(sectorId, null);
+                        return new OkObjectResult(getResult);
+                    }
+                    return new OkObjectResult(null);
+                }
+                //string name = req.Query["name"];
 
+                //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                //dynamic data = JsonConvert.DeserializeObject(requestBody);
+                //name = name ?? data?.name;
 
             }
-            else if (req.Method == "GET")
+            catch (Exception e)
             {
-                string sector = req.Query["sector"];
-                string location = req.Query["location"];
-                int sectorId = 0;
-                if(int.TryParse(sector, out sectorId))
-                {
-
-                    var getResult = coreService.GetMaskLogs(sectorId, null);
-                    return new OkObjectResult(getResult);
-                }
-                return new OkObjectResult(null);
+                return new OkObjectResult(false);
             }
-            //string name = req.Query["name"];
-
-            //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            //dynamic data = JsonConvert.DeserializeObject(requestBody);
-            //name = name ?? data?.name;
-
-
-            return new OkObjectResult(null);
+             return new OkObjectResult(null);
         }
 
         private static async Task InvokeMethod()

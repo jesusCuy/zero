@@ -10,6 +10,7 @@ import WebCam from "../WebCam/WebCam.component";
 // styles
 import styles from "./FaceDetection.module.css";
 import { analyzeImage } from "./resource";
+import api from '../../api';
 
 export default function FaceDetection (){
   const user = useContext(Context);
@@ -21,7 +22,18 @@ export default function FaceDetection (){
           .then(response =>{ 
             user.setLoading(); 
             user.setPrediction(response);
-            console.log(response);
+
+            const model = {
+              SectorId: 1,
+              Incident: response.type === "NoMask",
+              Description: response.type
+            };
+            api.sendMaskLog(model).then(res => {
+              console.log("maskLog response", res);
+            }, err => {
+                console.error(err);
+            });
+            //console.log('4333333',response);
           });
     },[webcamRef]);
   
