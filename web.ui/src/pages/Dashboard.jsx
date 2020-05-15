@@ -2,7 +2,6 @@ import React from "react";
 import api from "../api";
 
 import "../App.css";
-import Axios from "axios";
 
 class Dashboard extends React.Component {
 
@@ -13,7 +12,6 @@ class Dashboard extends React.Component {
     componentDidMount() {
         api.getDashboardDetails()
         .then(response => {
-            // console.log("What´s up fuckers", JSON.stringify(response));
             this.setState({ details: response });
         }, err => {
             console.error(err);
@@ -38,8 +36,8 @@ class Dashboard extends React.Component {
                         <tbody>
                             { this.state.details && this.state.details.map(d => 
                                 <tr className="row">
-                                    <td>{d.date}</td>
-                                    <td>{d.incident ? "Precaución" : "OK"}</td>
+                                    <td>{d.dateString}</td>
+                                    <td>{d.description}</td>
                                     <td>{d.location.sector}</td>
                                     <td>{d.location.location}</td>
                                     <td>{d.location.lat}, {d.location.long}</td>

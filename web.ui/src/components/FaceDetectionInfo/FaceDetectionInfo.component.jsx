@@ -15,23 +15,21 @@ const threshold = 50;
 export default function FaceDetectionInfo (){
     const user = useContext(Context);
     const hasAccess = () => {
-        const prediction = user.prediction;
+        const prediction = user.prediction
+        let result = {isValid: false, text: "Acceso denegado"};
         if(prediction.value === 0 ||
             prediction.value < threshold ||
             (prediction.value > threshold && prediction.type === typeTags.NoMask )){
-            return {
-                isValid: false,
-                text: "Acceso denegado"
-            };
+            // no changes to result
         }
 
         if(prediction.value > 30 && prediction.type === typeTags.Mask){
-            return {
+            result = {
                 isValid:true,
                 text:"Acceso autorizado"
             }
         };
-        return {isValid:false};
+        return result;
     };
 
     const getPrediction = () => {

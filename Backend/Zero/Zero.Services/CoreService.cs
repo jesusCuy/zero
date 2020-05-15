@@ -40,6 +40,7 @@ namespace Zero.Services
                     .Include(m => m.Sector)
                         .ThenInclude(s => s.Location)
                     .Where(m => m.SectorId == sectorId && m.Date > DateTime.Now.AddDays(-1))
+                    .OrderByDescending(m => m.Date)
                     .ToList();
 
                 return dbEntities.ToMaskLogResponse();
