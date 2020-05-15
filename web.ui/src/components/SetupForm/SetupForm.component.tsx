@@ -4,8 +4,9 @@ import MtTextField from '@material-ui/core/TextField';
 import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
-import styles from "./SetupForm.module.css";
+import logo from "../../assets/LifeMask_bg.png"
 
+import styles from "./SetupForm.module.css";
 import { withStyles } from '@material-ui/core/styles';
 
 const TextField = withStyles({
@@ -39,7 +40,8 @@ export default function TopNav () {
     return (
         <div className={styles["SetupFormWrapper"]}>
             <Paper  elevation={3} className={styles["SetupForm"]}> 
-                <h3 className={styles["SetupForm_Title"]}>Bienvenido a <b>Mask Recognizer</b></h3>   
+              <img src={logo} alt="logo" className={styles["SetupForm_logo"]}/>
+                <h3 className={styles["SetupForm_Title"]}>Bienvenido</h3>   
                 <p className={styles["formDescription"]}>
                     Ingrese a su ubicación y sector.
                 </p> 

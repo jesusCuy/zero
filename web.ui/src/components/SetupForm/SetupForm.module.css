@@ -15,16 +15,23 @@
 .formDescription{
     color:#6f6f6f;
     font-size: 15px;
+    margin: 10px;
 }
 .SetupForm_Title{
     font-size: 25px !important;
     font-weight: 400 !important;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 15px;
+    margin-top: 0px;
 }
 .SetupForm_Title b{
     color:rgb(0, 211, 151) ;
     font-weight: 600;
+
+}
+
+.SetupForm_logo{
+    width: 220px;
 }
 
 .formControlGroup{

@@ -30,7 +30,7 @@ export default function FaceDetection (){
           <Paper  
             className={styles["FaceDetectionContainer"]}
             >
-              <h4>Mask Detection</h4>
+              <h4>Detección de cubrebocas</h4>
               <button onClick={capture}>Snap</button>
               <div className={styles["webContainer"]}>
                 <WebCam childRef={webcamRef}/>

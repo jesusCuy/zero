@@ -13,7 +13,7 @@ export default function TopNav (){
       <IconButton edge="start" color="inherit" aria-label="menu">
       </IconButton>
       <Typography variant="h6" color="inherit">
-        Mask Recognizer
+        LifeMask
       </Typography>
     </Toolbar>
   </AppBar>);
