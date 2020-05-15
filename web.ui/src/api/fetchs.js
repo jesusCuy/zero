@@ -1,4 +1,4 @@
-const root = "https://localhost:5000";
+const root = "https://covid-zero.azurewebsites.net/api"; 
 
 /**
  * Contains the information for create all the API calls
@@ -22,7 +22,7 @@ const fetchs = [
 			options: {
 				method: "GET"
 			},
-			endpoint: `${root}/details/`
+			endpoint: `${root}/MaskLogFunction?sector=1`
 		})
 	}
 ];

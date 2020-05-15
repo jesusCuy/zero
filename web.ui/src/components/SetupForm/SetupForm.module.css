@@ -29,6 +29,7 @@
 
 .formControlGroup{
     width: 80%;
+    margin: 0.5rem auto !important;
 }
 .inputForm{
     margin-top: 15px !important;

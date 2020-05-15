@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import MtTextField from '@material-ui/core/TextField';
-import { FormControl } from '@material-ui/core';
+import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import styles from "./SetupForm.module.css";
@@ -30,37 +30,54 @@ const TextField = withStyles({
     },
   })(MtTextField);
 
-export default function TopNav (){
+  const handleChange = () => {
+
+  }
+
+export default function TopNav () {
+  
     return (
         <div className={styles["SetupFormWrapper"]}>
             <Paper  elevation={3} className={styles["SetupForm"]}> 
-                <h3 className={styles["SetupForm_Title"]}>Welcome to <b>Mask Recognizer</b></h3>   
+                <h3 className={styles["SetupForm_Title"]}>Bienvenido a <b>Mask Recognizer</b></h3>   
                 <p className={styles["formDescription"]}>
-                    Before before to use the mask detection please add the current location and area.
+                    Ingrese a su ubicación y sector.
                 </p> 
-                <FormControl className={styles["formControlGroup"]}>
-                    <TextField 
-                        id="outlined-location" 
-                        label="Location" 
-                        type="text" 
-                        variant="outlined"
-                        className={styles["inputForm"]}
-                    />
-                     <TextField 
-                        id="outlined-area" 
-                        label="Area" 
-                        type="text" 
-                        variant="outlined"
-                        className={styles["inputForm"]}
-                    />
-                    <Button 
-                        variant="contained" 
-                        size="large" 
-                        color="primary"
-                        className={styles["accessButton"]}>
-                        Access
-                    </Button>
-                </FormControl>
+                <FormControl variant="outlined" className={styles["formControlGroup"]}>
+                    <InputLabel id="location-label">Ubicación</InputLabel>
+                    <Select
+                      label="Ubicación"
+                      id="outlined-location"
+                      value={ 1 }
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={1}>Hexaware Technologies México</MenuItem>
+                      <MenuItem value={5}>Plaza Galerías</MenuItem>
+                      <MenuItem value={6}>Soriana</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl variant="outlined" className={styles["formControlGroup"]}>
+                  <InputLabel id="area-label">Area</InputLabel>
+                    <Select
+                      label="Sector"
+                      id="outlined-area"
+                      value={ 1 }
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={1}>Sector 1</MenuItem>
+                      <MenuItem value={2}>Entrada</MenuItem>
+                      <MenuItem value={3}>Salida de emergencia</MenuItem>
+                    </Select>
+                    </FormControl>
+                    <FormControl className={styles["formControlGroup"]}>
+                      <Button 
+                          variant="contained" 
+                          size="large" 
+                          color="primary"
+                          className={styles["accessButton"]}>
+                          Acceder
+                      </Button>
+                    </FormControl>
             </Paper>
         </div>
     );
