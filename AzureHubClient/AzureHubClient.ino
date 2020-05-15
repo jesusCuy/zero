@@ -89,7 +89,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT receive_message_callback(IOTHUB_MESSAGE_
     {
         LogInfo("Received Message [%d]\r\n Message ID: %s\r\n Data: <<<%.*s>>> & Size=%d\r\n", *counter, messageId, (int)size, buffer, (int)size);
         digitalWrite(D4, HIGH);
-        delay(1500);
+        delay(2500);
         digitalWrite(D4, LOW);
         // If we receive the work 'quit' then we stop running
         if (size == (strlen("quit") * sizeof(char)) && memcmp(buffer, "quit", size) == 0)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Zero.Data;
 using Zero.Data.Model;
@@ -30,11 +31,51 @@ namespace Zero.Services
             return newMaskLog.ToMaskLogResponse();
         }
 
-        public async Task<List<MaskLogResponse>> GetMaskLogs()
+        public List<MaskLogResponse> GetMaskLogs(int sectorId, int? locationId)
         {
-            var result = new List<MaskLogResponse>();
+            try
+            {
+                var result = new List<MaskLogResponse>();
+                var dbEntities = _context.MaskLogs
+                    .Include(m => m.Sector)
+                        .ThenInclude(s => s.Location)
+                    .Where(m => m.SectorId == sectorId && m.Date > DateTime.Now.AddDays(-1))
+                    .ToList();
 
-            return result;
+                return dbEntities.ToMaskLogResponse();
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+
+        public List<LocationSectorResponse> GetLocations()
+        {
+            try
+            {
+
+                var dbEntities = _context.Locations
+                    .Include(l => l.Sectors)
+                    .Select(l => new LocationSectorResponse
+                    {
+                        LocationId = l.LocationId,
+                        Name = l.Name,
+                        Sectors = l.Sectors.Select(s => new SectorResponse
+                        {
+                            Name = s.Name,
+                            SectorId = s.SectorId
+                        }).ToList()
+                    })
+                    .ToList();
+
+                return dbEntities;
+                // return dbEntities.ToLocationSectorResponse();
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
     }
 }
