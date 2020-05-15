@@ -11,7 +11,7 @@ interface Props {
 
 const FeedbackPage : FunctionComponent<Props> = () => {
     return (
-        <div>
+        <div className="FeedbackPageContainer">
             <TopNav />
             <div className="FeedbackDetectionWrap">
                 <FaceDetection />
