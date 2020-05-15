@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Zero.Data.Model
 {
+    [Table(nameof(MaskLog))]
     public class MaskLog
     {
         [Key]
@@ -22,7 +23,6 @@ namespace Zero.Data.Model
         public string Description { get; set; }
         public bool Incident { get; set; }
 
-        [NotMapped]
         public virtual Sector Sector { get; set; }
     }
 }

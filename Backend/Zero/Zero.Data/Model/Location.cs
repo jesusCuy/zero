@@ -16,5 +16,7 @@ namespace Zero.Data.Model
         public string Name { get; set; }
         public float Lat { get; set; }
         public float Long { get; set; }
+
+        public virtual List<Sector> Sectors { get; set; }
     }
 }

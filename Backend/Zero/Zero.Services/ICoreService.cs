@@ -10,6 +10,8 @@ namespace Zero.Services
     {
         Task<MaskLogResponse> SaveMaskLog(MaskLogRequest request);
 
-        Task<List<MaskLogResponse>> GetMaskLogs();
+        List<MaskLogResponse> GetMaskLogs(int sectorId, int? locationId);
+
+        List<LocationSectorResponse> GetLocations();
     }
 }

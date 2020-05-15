@@ -18,7 +18,8 @@ namespace Zero.Data.Model
         [ForeignKey(nameof(Location))] 
         public int LocationId { get; set; }
         
-        [NotMapped]
         public virtual Location Location { get; set; }
+
+        public virtual List<MaskLog> MaskLogs { get; set; }
     }
 }
