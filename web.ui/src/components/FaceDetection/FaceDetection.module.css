@@ -15,6 +15,11 @@
     font-weight: 500;
 }
 
+.analyzeButton{
+    background-color: rgb(3, 189, 136) !important;
+    margin-bottom: 15px !important;
+}
+
 .webContainer{
     height: calc(100% - 80px);
 }

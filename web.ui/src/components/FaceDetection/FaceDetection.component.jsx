@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
-import * as cvstfjs from '@microsoft/customvision-tfjs';
+import Button from '@material-ui/core/Button';
 
 import { Context } from "../../context/index";
 
@@ -42,8 +42,15 @@ export default function FaceDetection (){
           <Paper  
             className={styles["FaceDetectionContainer"]}
             >
-              <h4>Detección de cubrebocas</h4>
-              <button onClick={capture}>Snap</button>
+              <Button 
+                  variant="contained" 
+                  size="large" 
+                  color="primary"
+                  className={styles["analyzeButton"]}
+                  onClick={capture}
+                  >
+                  Empezar detección
+              </Button>
               <div className={styles["webContainer"]}>
                 <WebCam childRef={webcamRef}/>
               </div>
