@@ -49,7 +49,7 @@ export default function FaceDetectionInfo (){
             <Paper 
                 className={styles["FaceDetectionContainerInfo"]} 
                 elevation={3}>
-                    <h4>Detection info</h4>
+                    <h4>Información de analisis</h4>
                     <div className={styles["detectionResult"]}>
                         <div className={styles["infoGroup"]}>
                             <label>Locación</label>
