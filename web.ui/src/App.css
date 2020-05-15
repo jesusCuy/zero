@@ -1,11 +1,12 @@
 .App {
   text-align: center;
 }
-
+.FeedbackPageContainer{
+  background:#f6f7f7;
+}
 .FeedbackDetectionWrap{
   height: 90vh;
   display: flex;
-  margin: 15px;
   padding: 15px;
 }
 
