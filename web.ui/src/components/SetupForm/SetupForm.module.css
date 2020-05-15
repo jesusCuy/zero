@@ -1,0 +1,48 @@
+
+.SetupFormWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.SetupForm{
+    width:700px;
+    min-height:100px;
+    margin-top: 70px;
+    padding:15px 15px 35px 15px;
+}
+.formDescription{
+    color:#6f6f6f;
+    font-size: 15px;
+}
+.SetupForm_Title{
+    font-size: 25px !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 15px;
+}
+.SetupForm_Title b{
+    color:rgb(0, 211, 151) ;
+    font-weight: 600;
+}
+
+.formControlGroup{
+    width: 80%;
+}
+.inputForm{
+    margin-top: 15px !important;
+}
+.inputForm .MuiInput-underline:after{
+    border-color: red !important;
+}
+
+.accessButton{
+    margin-top: 15px !important;
+    background-color: rgb(3, 189, 136) !important;
+}
+
+/*
+rgb(0, 211, 151) 
+rgb(6, 9, 22)
+*/
