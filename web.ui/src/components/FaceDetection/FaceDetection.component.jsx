@@ -26,14 +26,13 @@ export default function FaceDetection (){
             const model = {
               SectorId: 1,
               Incident: response.type === "NoMask",
-              Description: response.type
+              Description: response.type === "Mask" ? "Deteccion de cubrebocas" : "Incidencia de cubrebocas !!"
             };
             api.sendMaskLog(model).then(res => {
               console.log("maskLog response", res);
             }, err => {
                 console.error(err);
             });
-            //console.log('4333333',response);
           });
     },[webcamRef]);
   

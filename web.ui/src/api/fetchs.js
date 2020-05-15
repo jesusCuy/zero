@@ -1,5 +1,5 @@
-// const root = "https://covid-zero.azurewebsites.net/api"; 
-const root = "http://localhost:7071/api"; 
+const root = "https://covid-zero.azurewebsites.net/api"; 
+// const root = "http://localhost:7071/api"; 
 
 /**
  * Contains the information for create all the API calls

@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
                             { this.state.details && this.state.details.map(d => 
                                 <tr className="row">
                                     <td>{d.dateString}</td>
-                                    <td>{d.description}</td>
+                                    <td>{d.incident ? "OK" : "Incidencia detectada"}</td>
                                     <td>{d.location.sector}</td>
                                     <td>{d.location.location}</td>
                                     <td>{d.location.lat}, {d.location.long}</td>
