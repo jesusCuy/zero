@@ -14,7 +14,6 @@ import { analyzeImage } from "./resource";
 export default function FaceDetection (){
   const user = useContext(Context);
   const webcamRef = React.useRef(null);
-
   const capture = React.useCallback(() => {
         user.setLoading(); 
         const imageSrc = webcamRef.current.getScreenshot();
