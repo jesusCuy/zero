@@ -10,10 +10,13 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        api.getDashboardDetails().then(response => {
+        api.getDashboardDetails()
+        .then(response => {
             console.log("What´s up fuckers", JSON.stringify(response));
             // this.setState({ details: response.data });
-        });
+        }, err => {
+            console.error(err);
+        })
     }
 
     render() {

@@ -12,7 +12,6 @@ export default function FaceDetection (){
   const webcamRef = React.useRef(null);
   const capture = React.useCallback(
     async () => {
-        debugger;
         const imageSrc = webcamRef.current.getScreenshot();
         let model = new cvstfjs.ObjectDetectionModel();
         await model.loadModelAsync('model.json');
