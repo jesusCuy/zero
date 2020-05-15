@@ -7,12 +7,11 @@ import LoadingOverlay from 'react-loading-overlay';
 
 export default function App() {
   const user = useContext(Context);
-  debugger;
   return (
     <LoadingOverlay
       active={user.isLoading}
       spinner
-      text='Analizando...'
+      text='Cargando...'
       >
       <div className="App">
         <Routes />

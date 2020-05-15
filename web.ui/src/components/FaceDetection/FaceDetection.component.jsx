@@ -9,22 +9,23 @@ import WebCam from "../WebCam/WebCam.component";
 
 // styles
 import styles from "./FaceDetection.module.css";
+import { analyzeImage } from "./resource";
 
 export default function FaceDetection (){
   const user = useContext(Context);
   const webcamRef = React.useRef(null);
-  const capture = React.useCallback(
-    async () => {
-        user.setLoading();
-        let model = new cvstfjs.ObjectDetectionModel();
-        await model.loadModelAsync('tensorFlowJs/model.json');
-        const image = document.getElementById('webCam');
-        const result = await model.executeAsync(image);
-        user.setLoading();
-        console.log(result);
-    },
-    [webcamRef]
-  );
+
+  const capture = React.useCallback(() => {
+        user.setLoading(); 
+        const imageSrc = webcamRef.current.getScreenshot();
+        analyzeImage(imageSrc)
+          .then(response =>{ 
+            user.setLoading(); 
+            user.setPrediction(response);
+            console.log(response);
+          });
+    },[webcamRef]);
+  
     return (
       <div className={styles["wrapper"]}>
           <Paper  

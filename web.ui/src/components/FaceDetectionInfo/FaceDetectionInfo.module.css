@@ -7,3 +7,31 @@
     height: 100%;    
     padding:10px;
 }
+.FaceDetectionContainerInfo h4{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;    
+}
+
+.FaceDetectionContainerInfo p{
+    color: #6f6f6f;  
+    margin:0px;  
+}
+
+.infoGroup {
+    margin-top: 30px;
+}
+.accessApprove p{
+    font-size:18px;
+    color:rgb(0, 211, 151) !important;
+    font-weight: 600;
+}
+.accessReject p{
+    font-size:18px;
+    color:#d32f2f !important;
+    font-weight: 600;
+}
+.detectionResult label{
+    font-size: 16px !important;
+    font-weight: 700;
+}
