@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
-import MtTextField from '@material-ui/core/TextField';
 import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
@@ -9,29 +8,6 @@ import logo from "../../assets/LifeMask_bg.png"
 import { Context } from "../../context/index";
 
 import styles from "./SetupForm.module.css";
-import { withStyles } from '@material-ui/core/styles';
-
-const TextField = withStyles({
-    root: {
-      '& label.Mui-focused': {
-        color: '#00d397',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: '#384c53',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: '#384c53',
-        },
-        '&:hover fieldset': {
-          borderColor: '#384c53',
-        },
-        '&.Mui-focused fieldset': {
-          border:"1px solid #384c53"
-        },
-      },
-    },
-  })(MtTextField);
 
   const locations = ['Hexaware Technologies México','Plaza Galerías','Soriana'];
   const areas = ['Sector 1','Entrada','Salida de emergencia'];
