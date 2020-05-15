@@ -14,8 +14,22 @@ class ContextProvider extends React.Component {
 		dashboardDetails: [],
 		setDetails: dashboardDetails => {
 			this.setState({ dashboardDetails});
-		}
+		},
+		isLoading: false,
+		location:"",
+		area:"",
+		prediction:{}
 	}
+	setLoading = () => {
+		this.setState({isLoading: !this.state.isLoading});
+	};
+
+	setPrediction = (newPrediction) => {
+		this.setState({prediction:newPrediction});
+	};
+	setAreaInformation = (info) => {
+		this.setState({area: info.area, location: info.location });
+	};
 
 	render() {
 		const {
@@ -23,7 +37,13 @@ class ContextProvider extends React.Component {
 		} = this.props;
 
 		return (
-			<Context.Provider value={ this.state }>
+			<Context.Provider value={ {
+					...this.state, 
+					setLoading : this.setLoading,
+					setPrediction : this.setPrediction,
+					setAreaInformation: this.setAreaInformation 
+					}
+				 }>
 				{ children }
 			</Context.Provider>
 		);

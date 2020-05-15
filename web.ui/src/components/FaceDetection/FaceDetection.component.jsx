@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
 import * as cvstfjs from '@microsoft/customvision-tfjs';
+
+import { Context } from "../../context/index";
 
 // components
 import WebCam from "../WebCam/WebCam.component";
 
 // styles
 import styles from "./FaceDetection.module.css";
+import { analyzeImage } from "./resource";
 
 export default function FaceDetection (){
+  const user = useContext(Context);
   const webcamRef = React.useRef(null);
-  const capture = React.useCallback(
-    async () => {
+  const capture = React.useCallback(() => {
+        user.setLoading(); 
         const imageSrc = webcamRef.current.getScreenshot();
-        let model = new cvstfjs.ObjectDetectionModel();
-        await model.loadModelAsync('model.json');
-        const image = document.getElementById('webCam');
-        const result = await model.executeAsync(image);
-        console.log(result);
-    },
-    [webcamRef]
-  );
+        analyzeImage(imageSrc)
+          .then(response =>{ 
+            user.setLoading(); 
+            user.setPrediction(response);
+            console.log(response);
+          });
+    },[webcamRef]);
+  
     return (
       <div className={styles["wrapper"]}>
           <Paper  
